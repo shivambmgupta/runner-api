@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  nginx:
+    image: nginx:1.25.1-alpine-slim
+    ports:
+      - '80:80'
+    volumes:
+      - ./project-conf/nginx/conf.d/:/etc/nginx/conf.d/:ro
+
+  runner:
+    build: ./backend/runner-api/
+    env_file:
+      - ./env/.env.runner
